@@ -1,5 +1,5 @@
 check process kafka
-  matching "kafka"
+  with pidfile /var/vcap/jobs/broker/bin/kafka.pid
   start program "/var/vcap/jobs/broker/bin/kafka_ctl start"
   stop program "/var/vcap/jobs/broker/bin/kafka_ctl stop"
   group vcap
