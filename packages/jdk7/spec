@@ -1,0 +1,7 @@
+---
+name: jdk7
+
+dependencies:
+
+files:
+ - jdk7/openjdk-1.7.0.tar.gz

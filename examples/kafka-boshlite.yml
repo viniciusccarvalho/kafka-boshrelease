@@ -1,0 +1,61 @@
+---
+name: kafka
+director_uuid: 7e25414d-2dfe-4a71-a28a-d09fd6c853f2 
+release:
+  name: kafka
+  version: latest
+
+compilation:
+  workers: 2
+  network: lsn
+  cloud_properties: {}
+  reuse_compilation_vms: true
+
+update:
+  canaries: 1
+  canary_watch_time: 30000 - 240000
+  update_watch_time: 30000 - 600000
+  max_in_flight: 2
+
+resource_pools:
+ - name: infrastructure1
+   network: lsn
+   size: 2
+   stemcell:
+    name: bosh-warden-boshlite-ubuntu-trusty-go_agent
+    version: latest
+   cloud_properties: {}
+
+networks:
+  - name: lsn
+    subnets:
+      # network with static ip used for web
+      - range: 10.244.8.0/30
+        reserved: [10.244.8.1]
+        static: [10.244.8.2]
+        cloud_properties: {}
+      # networks for dynamic ips (db, workers, compilation vms)
+      - range: 10.244.8.4/30
+        reserved: [10.244.8.5]
+        cloud_properties: {}
+      - range: 10.244.8.8/30
+        reserved: [10.244.8.9]
+        cloud_properties: {}
+      - range: 10.244.8.12/30
+        reserved: [10.244.8.13]
+        cloud_properties: {}
+      - range: 10.244.8.16/30
+        reserved: [10.244.8.17]
+        cloud_properties: {}
+      - range: 10.244.8.20/30
+        reserved: [10.244.8.21]
+        cloud_properties: {}
+jobs: 
+ - name: zookeeper
+   templates:
+   - name :  zookeeper
+   instances: 1
+   resource_pool: infrastructure1
+   persistent_disk: 4096
+   networks:
+   - name: lsn

@@ -1,0 +1,8 @@
+---
+name: zookeeper
+templates:
+  zookeeper_ctl : bin/zookeeper_ctl
+  zoo.cfg : config/zoo.cfg
+packages:
+  - jdk7
+  - zookeeper

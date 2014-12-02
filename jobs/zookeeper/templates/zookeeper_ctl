@@ -1,0 +1,24 @@
+#!/bin/bash -e
+
+LOG_DIR=/var/vcap/sys/log/zookeeper
+BIN_DIR=/var/vcap/packages/zookeeper/bin
+export ZOOCFGDIR=/var/vcap/jobs/zookeeper/config
+
+export JAVA_HOME=/var/vcap/packages/jdk7
+export PATH=$PATH:$JAVA_HOME/bin:$BIN_DIR
+
+
+case $1 in
+  start)
+        ${BIN_DIR}/zkServer.sh start
+        ;;
+  stop)
+		${BIN_DIR}/zkServer.sh stop
+        ;;
+
+  *)
+        echo "Usage: zkServier.sh start|stop"
+
+        ;;
+
+esac

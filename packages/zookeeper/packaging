@@ -1,0 +1,11 @@
+set -e
+archive="zookeeper/zookeeper-3.4.6.tar.gz"
+if [[ -f $archive ]] ; then
+  echo "Archive found"
+else
+  echo "Archive not found"
+  exit 1
+fi
+
+tar zxf $archive
+cp -R zookeeper-3.4.6/* ${BOSH_INSTALL_TARGET}

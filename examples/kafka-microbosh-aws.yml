@@ -1,0 +1,54 @@
+---
+name: kafka
+logging: 
+   level: debug
+director_uuid: 128d1656-ce3b-40be-bae4-730809a6f222 
+release:
+  name: kafka
+  version: latest
+
+compilation:
+  workers: 2
+  network: default
+  cloud_properties:
+    instance_type: m1.small
+  reuse_compilation_vms: true
+
+update:
+  canaries: 1
+  canary_watch_time: 30000 - 240000
+  update_watch_time: 30000 - 600000
+  max_in_flight: 2
+
+resource_pools:
+ - name: infrastructure1
+   network: default
+   size: 2
+   stemcell:
+    name: bosh-aws-xen-ubuntu-trusty-go_agent
+    version: latest
+   cloud_properties:
+    instance_type: m1.small
+
+networks:
+- name: floating
+  type: vip
+  cloud_properties: {}
+- name: default
+  type: dynamic
+  cloud_properties:
+    security_groups: ['bosh','zookeeper']
+    subnet: subnet-ef966498
+    region: us-east-1
+    
+    
+jobs: 
+ - name: zookeeper
+   templates:
+   - name :  zookeeper
+   instances: 1
+   resource_pool: infrastructure1
+   persistent_disk: 4096
+   networks:
+   - name: default
+     default: [dns, gateway]
