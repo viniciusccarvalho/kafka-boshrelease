@@ -1,0 +1,24 @@
+#!/bin/bash -e
+
+
+BIN_DIR=/var/vcap/packages/broker/bin
+export CFGDIR=/var/vcap/jobs/broker/config
+
+export JAVA_HOME=/var/vcap/packages/jdk7
+export PATH=$PATH:$JAVA_HOME/bin:$BIN_DIR
+
+
+case $1 in
+  start)
+        ${BIN_DIR}/kafka-server-start.sh -daemon $CFGDIR/server.properties
+        ;;
+  stop)
+		${BIN_DIR}/kafka-server-stop.sh
+        ;;
+
+  *)
+        echo "Usage: kafka_ctl start|stop"
+
+        ;;
+
+esac

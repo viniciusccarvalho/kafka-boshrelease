@@ -1,5 +1,9 @@
 ---
 name: broker
 templates:
+  server.properties.erb : config/server.properties
+  kafka_ctl : bin/kafka_ctl
 
 packages:
+  - jdk7
+  - broker

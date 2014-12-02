@@ -1,0 +1,5 @@
+check process kafka
+  matching "kafka"
+  start program "/var/vcap/jobs/broker/bin/kafka_ctl start"
+  stop program "/var/vcap/jobs/broker/bin/kafka_ctl stop"
+  group vcap
