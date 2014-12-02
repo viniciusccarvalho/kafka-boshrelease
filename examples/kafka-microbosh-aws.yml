@@ -23,7 +23,7 @@ update:
 resource_pools:
  - name: infrastructure1
    network: default
-   size: 2
+   size: 4
    stemcell:
     name: bosh-aws-xen-ubuntu-trusty-go_agent
     version: latest
@@ -35,11 +35,18 @@ networks:
   type: vip
   cloud_properties: {}
 - name: default
-  type: dynamic
-  cloud_properties:
-    security_groups: ['bosh','zookeeper']
-    subnet: subnet-ef966498
-    region: us-east-1
+  type: manual
+  subnets:
+    - range: 10.0.0.0/24
+      dns: 
+       - 10.0.0.6
+      reserved:
+        - 10.0.0.1 - 10.0.0.9
+      cloud_properties:
+        security_groups: ['bosh']
+        subnet: subnet-ef966498
+        region: us-east-1
+ 
     
     
 jobs: 
@@ -51,4 +58,15 @@ jobs:
    persistent_disk: 4096
    networks:
    - name: default
-     default: [dns, gateway]
+
+ - name: broker
+   templates:
+   - name: broker
+   instances: 2
+   resource_pool: infrastructure1
+   persistent_disk: 10000
+   networks:
+   - name: default
+  
+properties:
+  zookeeper: '0.zookeeper.default.kafka.microbosh'  
