@@ -12,7 +12,7 @@ compilation:
   network: default
   cloud_properties:
     instance_type: m1.small
-  reuse_compilation_vms: true
+  reuse_compilation_vms: false
 
 update:
   canaries: 1

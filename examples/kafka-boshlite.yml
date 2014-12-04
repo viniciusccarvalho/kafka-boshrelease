@@ -7,7 +7,7 @@ release:
 
 compilation:
   workers: 2
-  network: lsn
+  network: default
   cloud_properties: {}
   reuse_compilation_vms: true
 
@@ -19,7 +19,7 @@ update:
 
 resource_pools:
  - name: infrastructure1
-   network: lsn
+   network: default
    size: 4
    stemcell:
     name: bosh-warden-boshlite-ubuntu-trusty-go_agent
@@ -27,7 +27,7 @@ resource_pools:
    cloud_properties: {}
 
 networks:
-  - name: lsn
+  - name: default
     subnets:
       # network with static ip used for web
       - range: 10.244.8.0/30
@@ -60,7 +60,7 @@ jobs:
    resource_pool: infrastructure1
    persistent_disk: 4096
    networks:
-   - name: lsn
+   - name: default
      static_ips: 10.244.8.10
 
  - name: broker
@@ -70,7 +70,7 @@ jobs:
    resource_pool: infrastructure1
    persistent_disk: 10000
    networks:
-   - name: lsn
+   - name: default
   
 properties:
   zookeeper: '10.244.8.10'  
