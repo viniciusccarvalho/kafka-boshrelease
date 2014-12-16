@@ -20,7 +20,6 @@ update:
 resource_pools:
  - name: infrastructure1
    network: default
-   size: 4
    stemcell:
     name: bosh-warden-boshlite-ubuntu-trusty-go_agent
     version: latest
@@ -66,7 +65,7 @@ jobs:
  - name: broker
    templates:
    - name: broker
-   instances: 2
+   instances: 3
    resource_pool: infrastructure1
    persistent_disk: 10000
    networks:
