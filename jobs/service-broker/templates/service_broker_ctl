@@ -1,0 +1,24 @@
+#!/bin/bash -e
+BIN_DIR=/var/vcap/packages/service-broker
+export JAVA_HOME=/var/vcap/packages/jdk7
+export PATH=$PATH:$JAVA_HOME/bin:$BIN_DIR
+
+PIDFILE=${BIN_DIR}/broker.pid
+
+case $1 in
+  start)
+        ${JAVA_HOME}/bin/java -jar ${BIN_DIR}/kafka-service-broker-1.0.0.jar --zookeeper.url=<%= p('zookeeper') %>:2181 & > /dev/null 2>&1 
+        ps ax | grep -i 'kafka-service-broker' | grep java | grep -v grep | awk '{print $1}' > ${PIDFILE}
+        ;;
+  stop)
+        kill -9 `cat $PIDFILE`	
+		rm -f ${PIDFILE}
+        ;;
+
+  *)
+        echo "Usage: service_broker_ctl start|stop"
+
+        ;;
+
+esac
+

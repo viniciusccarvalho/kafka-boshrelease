@@ -1,0 +1,8 @@
+---
+name: service-broker
+templates:
+ service_broker_ctl : bin/service_broker_ctl
+packages:
+
+ - jdk7
+ - service-broker

@@ -1,0 +1,10 @@
+# abort script on any command that exits with a non zero value
+set -e
+archive="sb/kafka-service-broker-1.0.0.jar"
+if [[ -f $archive ]] ; then
+  echo "Archive found"
+else
+  echo "Archive not found"
+  exit 1
+fi
+cp $archive ${BOSH_INSTALL_TARGET}

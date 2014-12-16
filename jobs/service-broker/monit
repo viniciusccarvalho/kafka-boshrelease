@@ -1,0 +1,5 @@
+check process service-broker
+  with pidfile /var/vcap/packages/service-broker/broker.pid
+  start program "/var/vcap/jobs/service-broker/bin/service_broker_ctl start"
+  stop program "/var/vcap/jobs/service-broker/bin/service_broker_ctl stop"
+  group vcap

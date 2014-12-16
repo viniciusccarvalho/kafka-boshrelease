@@ -1,0 +1,21 @@
+---
+broker/kafka_2.9.2-0.8.1.1.tgz:
+  object_id: 562667f3-ef09-49e1-a818-e75c9da48dec
+  sha: !binary |-
+    ZDczY2M4N2ZjYjAxYzYyZmRhZDgxNzFiN2JiOTQ2OGFjMTE1NmU3NQ==
+  size: 15067175
+jdk7/openjdk-1.7.0.tar.gz:
+  object_id: 45f0da08-0e55-4824-80b7-c79366a37099
+  sha: !binary |-
+    ZDBiZjhiMWNlZmE5NGVjMzc2ZDg3ZmYxMWI5OTk2ZmQxNWViYjE1ZA==
+  size: 31475716
+sb/kafka-service-broker-1.0.0.jar:
+  object_id: 01d448b0-2aed-4717-aac6-b2d8fcee6e8b
+  sha: !binary |-
+    YzExZTY0Mjg3NjkxMDQyZmYzMzNlZDA3ODNkMjVhODM1MWY3MmFkMw==
+  size: 16596289
+zookeeper/zookeeper-3.4.6.tar.gz:
+  object_id: 4485a315-f030-486c-ad9d-b3102f1a4998
+  sha: !binary |-
+    MmE5ZTUzZjU5OTBkZmUwOTY1ODM0YTUyNWZiY2FkMjI2YmY5MzQ3NA==
+  size: 17699306

@@ -65,11 +65,19 @@ jobs:
  - name: broker
    templates:
    - name: broker
-   instances: 3
+   instances: 2
    resource_pool: infrastructure1
    persistent_disk: 10000
    networks:
    - name: default
-  
+ 
+ - name: service-broker
+   templates:
+    - name: service-broker
+   instances: 1
+   resource_pool: infrastructure1
+   networks:
+   - name: default  
+
 properties:
   zookeeper: '10.244.8.10'  

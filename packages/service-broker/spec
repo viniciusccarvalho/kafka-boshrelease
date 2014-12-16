@@ -1,0 +1,7 @@
+---
+name: service-broker
+
+dependencies:
+ - jdk7
+files:
+ - sb/kafka-service-broker-1.0.0.jar
